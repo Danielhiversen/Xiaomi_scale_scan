@@ -21,7 +21,7 @@ try:
 	#print "ble thread started"
 
 except:
-	print "error accessing bluetooth device..."
+	print("error accessing bluetooth device...")
 	sys.exit(1)
 
 blescan.hci_le_set_scan_parameters(sock)
@@ -33,6 +33,7 @@ try:
 		if len(returnedList) > 0:
 			(mac, uuid, major, minor, txpower, rssi) = returnedList[0].split(',', 6)
 			# change mac and uuid
+			print(mac, uuid, major, minor, txpower, rssi)
 			if mac == '88:0f:10:83:ca:5c' and uuid[0:22] == '01880f1083ca5c0d161d18':
 				measunit = uuid[22:24]	
 				measured = int((uuid[26:28] + uuid[24:26]), 16) * 0.01
@@ -51,7 +52,7 @@ try:
 				if unit:
 					print("measured : %s %s" % (measured, unit))
 				else:
-					print 'scale is sleeping'
+					print('scale is sleeping')
 
 		time.sleep(2)
 				
